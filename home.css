@@ -36,8 +36,9 @@ body {
 .carousel img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;  /* Alteração: mantém a imagem inteira */
     transition: opacity 0.5s ease;
+    background-color: #f8d7e1; /* Adiciona um fundo para espaços vazios */
 }
 
 .controls {
