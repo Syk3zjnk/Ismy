@@ -11,28 +11,30 @@ body {
   overflow: hidden;
 }
 
-/* Centraliza tudo */
+/* Centraliza envelope e botão */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px; /* espaço entre envelope e botão */
+  gap: 20px;
   text-align: center;
   position: relative;
   z-index: 10;
+  width: 100%;
 }
 
-/* Botão estilizado */
+/* ===== BOTÃO ===== */
 button {
-  padding: 12px 22px;
+  padding: 12px 24px;
   border: none;
   background: #ff4d6d;
   color: #fff;
-  border-radius: 8px;
-  font-size: 18px;
+  border-radius: 10px;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 button:hover {
@@ -91,7 +93,7 @@ button:hover {
   z-index: 2;
 }
 
-/* Animação ao abrir */
+/* ===== ESTADO ABERTO ===== */
 .open .flap {
   transform: rotateX(-180deg);
   z-index: 0;
@@ -112,4 +114,80 @@ button:hover {
   height: 100%;
   pointer-events: none;
   z-index: 0;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  .envelope {
+    width: 220px;
+    height: 140px;
+  }
+
+  .flap {
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-top: 70px solid #ff4d6d;
+  }
+
+  .letter {
+    width: 200px;
+    height: 120px;
+    left: 10px;
+    bottom: 8px;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+/* Celulares médios e tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .envelope {
+    width: 280px;
+    height: 175px;
+  }
+
+  .flap {
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 85px solid #ff4d6d;
+  }
+
+  .letter {
+    width: 260px;
+    height: 150px;
+    left: 10px;
+    bottom: 10px;
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1.05rem;
+    padding: 11px 22px;
+  }
+}
+
+/* Telas grandes (desktops) */
+@media (min-width: 1024px) {
+  .envelope {
+    width: 340px;
+    height: 220px;
+  }
+
+  .letter {
+    width: 320px;
+    height: 190px;
+    font-size: 1.1rem;
+  }
+
+  button {
+    font-size: 1.1rem;
+    padding: 13px 26px;
+  }
 }
