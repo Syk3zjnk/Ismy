@@ -1,3 +1,45 @@
+/* ===== ESTILOS GERAIS ===== */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffe0e9, #ffc2d1);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Centraliza tudo */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* espaço entre envelope e botão */
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Botão estilizado */
+button {
+  padding: 12px 22px;
+  border: none;
+  background: #ff4d6d;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background: #ff6b81;
+  transform: scale(1.05);
+}
+
 /* ===== ENVELOPE ===== */
 .envelope {
   position: relative;
@@ -6,7 +48,6 @@
   perspective: 1000px;
 }
 
-/* Parte de trás (bolso) */
 .pocket {
   position: absolute;
   width: 100%;
@@ -15,10 +56,9 @@
   border-radius: 6px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   overflow: hidden;
-  z-index: 1; /* Fica atrás da carta */
+  z-index: 1;
 }
 
-/* Aba superior */
 .flap {
   position: absolute;
   top: 0;
@@ -30,11 +70,10 @@
   border-top: 100px solid #ff4d6d;
   transform-origin: top;
   transition: transform 0.8s ease;
-  z-index: 3; /* Fica acima antes de abrir */
+  z-index: 3;
   transform-style: preserve-3d;
 }
 
-/* Carta */
 .letter {
   position: absolute;
   bottom: 10px;
@@ -49,18 +88,28 @@
   transform: translateY(70%);
   opacity: 0;
   transition: all 1s ease;
-  z-index: 2; /* Fica acima do envelope, abaixo da aba */
+  z-index: 2;
 }
 
-/* Quando abre o envelope */
+/* Animação ao abrir */
 .open .flap {
   transform: rotateX(-180deg);
-  z-index: 0; /* Aba vai para trás depois de abrir */
+  z-index: 0;
 }
 
-/* Carta subindo com suavidade */
 .open .letter {
   transform: translateY(-10%);
   opacity: 1;
-  z-index: 5; /* Carta aparece por cima de tudo */
+  z-index: 5;
+}
+
+/* ===== CONFETTI ===== */
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
