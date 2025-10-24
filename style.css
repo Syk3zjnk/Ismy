@@ -1,136 +1,115 @@
 body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden;
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
 
 /* ===== ENVELOPE ===== */
 .envelope {
-    position: relative;
-    width: 300px;
-    height: 180px;
-    background: #ff6b81;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.6s ease;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  width: 320px;
+  height: 200px;
+  perspective: 1000px;
 }
 
-/* Aba do envelope (triângulo) */
-.envelope::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-bottom: 90px solid #ff4d6d;
-    transform-origin: top;
-    transition: transform 0.6s ease;
-    z-index: 2;
+/* Parte de trás (bolso) */
+.pocket {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff6b81;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  overflow: hidden;
 }
 
-/* Notificação (mantida do seu design original) */
-.notification {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: #ff4757;
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: pulse 1.5s infinite;
-    z-index: 3;
+/* Aba superior */
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-top: 100px solid #ff4d6d;
+  transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 2;
 }
 
-/* Carta dentro do envelope */
+/* Carta */
 .letter {
-    position: absolute;
-    bottom: 0;
-    width: 85%;
-    height: 130px;
-    background: #fff;
-    border-radius: 6px;
-    padding: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    transform: translateY(100%);
-    opacity: 0;
-    transition: all 0.8s ease;
-    z-index: 1;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 300px;
+  height: 170px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  transform: translateY(70%);
+  opacity: 0;
+  transition: all 1s ease;
+  z-index: 1;
 }
 
 .letter h1 {
-    font-size: 1.6em;
-    color: #ff6b81;
-    margin-bottom: 8px;
+  color: #ff6b81;
+  margin: 0 0 10px;
 }
 
 .letter p {
-    font-size: 1.1em;
-    color: #333;
+  color: #333;
+  font-size: 1.1em;
 }
 
 /* ===== BOTÃO ===== */
-.button, #openBtn {
-    margin-top: 30px;
-    padding: 12px 30px;
-    font-size: 18px;
-    background: #fff;
-    color: #ff6b81;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease;
+#openBtn {
+  margin-top: 30px;
+  padding: 12px 30px;
+  font-size: 18px;
+  background: #fff;
+  color: #ff6b81;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
 }
 
-.button:hover, #openBtn:hover {
-    background: #ffe4e9;
+#openBtn:hover {
+  background: #ffe4e9;
 }
 
 /* ===== ANIMAÇÕES ===== */
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.3); opacity: 0.7; }
-    100% { transform: scale(1); opacity: 1; }
+
+/* Envelope abrindo */
+.open .flap {
+  transform: rotateX(180deg);
 }
 
-/* Quando abre o envelope */
-.open::before {
-    transform: rotateX(180deg);
-}
-
-/* Carta sobe suavemente quando o envelope abre */
+/* Carta subindo com suavidade */
 .open .letter {
-    transform: translateY(0);
-    opacity: 1;
+  transform: translateY(-10%);
+  opacity: 1;
 }
 
 /* ===== CONFETTI ===== */
 .confetti {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
 }
